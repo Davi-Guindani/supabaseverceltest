@@ -13,5 +13,8 @@
     "@supabase/supabase-js": "^2.47.6",
     "dotenv": "^16.4.7",
     "next": "^15.1.0"
+  },
+  "devDependencies": {
+    "supabase": "^2.0.0"
   }
 }
