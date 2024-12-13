@@ -1,20 +1,17 @@
 import database from "infra/database.js";
 
-function status(request, response) {
+export default async function status(request, response) {
+  let client = database.getNewClient();
   const updatedAt = new Date().toISOString();
-  let queryResponse = null;
 
-  try {
-    queryResponse = database.from("countries").select().limit(1);
-  } catch (error) {
+  const { data, error } = await client.from("countries").select().limit(1);
+  if (!error) {
+    response.status(200).json({
+      updated_at: updatedAt,
+      data: data,
+    });
+  } else {
     console.error("Supabase status check failed:", error.message);
-    res.status(500).json({ error: error.message });
+    response.status(500).json({ error: error.message });
   }
-
-  response.status(200).json({
-    updated_at: updatedAt,
-    query_response: queryResponse,
-  });
 }
-
-export default status;

@@ -8,15 +8,4 @@ function getNewClient() {
   return supabase;
 }
 
-function query(queryObject) {
-  let client;
-  client = getNewClient();
-  const { data, error } = client.query(queryObject);
-  if (!error) {
-    return data;
-  } else {
-    throw error;
-  }
-}
-
-export default { supabase, query };
+export default { getNewClient };
