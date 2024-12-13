@@ -16,3 +16,5 @@ function status(request, response) {
     query_response: queryResponse,
   });
 }
+
+export default status;
